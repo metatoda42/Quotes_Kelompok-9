@@ -1,6 +1,4 @@
 <resources>
     <string name="app_name">Tugas Akhir</string>
-    <string name="edit_text_hint">Enter Text</string>
-    <string name="add_btn_text">Add</string>
-    <string name="reset_btn_text">Reset</string>
+
 </resources>

@@ -10,13 +10,13 @@ import androidx.room.PrimaryKey;
 //Dalam kasus ini aku cuma bikin satu table bernama "Data Lokal", yang satunya lagi nanti akan
 //diurus sama API karena databasenya berasal dari API
 
-@Entity(tableName = "Data Lokal")
+@Entity(tableName = "DataLokal")
 
 public class MainData {
     //Bikin tabel!
     @PrimaryKey(autoGenerate=true) private int ID;
     @ColumnInfo (name = "komentar") private String komentar;
-    @ColumnInfo(name = "idQuote") private String idQuote;
+    @ColumnInfo(name = "idQuote") private String idQuote; 
 
     //Selanjutnya adalah Getter dan Setter
     //Pada dasarnya, Getter dan Setter adalah fungsi yang akan kita gunakan untuk melakukan

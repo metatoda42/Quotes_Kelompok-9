@@ -1,18 +1,24 @@
 package com.example.tugasakhir;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //Testing, testing 123
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+    private BottomNavigationView navbar;
     //Deklarasi Variabel, kayak di C++ gitu
     //Bedanya, disini variabelnya adalah komponen komponen XML yang nantinya akan diubah.
     //Contoh, kalo biasanya situ belajar tentang variabel x bisa diisi dengan angka atau text
@@ -41,11 +47,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Dibagian ini, variabel ini dihubungkan dengan komponen yang berada di XML
-        editText = findViewById(R.id.edit_text);
-        btAdd = findViewById(R.id.bt_add);
-        btReset = findViewById(R.id.bt_reset);
-        recyclerView = findViewById(R.id.recycler_view);
+
+        navbar = findViewById(R.id.main_navbar);
+        navbar.setOnNavigationItemSelectedListener(this);
+        loadFragment(new Fragment());
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        if(fragment != null){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_frame, fragment)
+                    .commit();
+            return true;
+
+        }
+        return false;
+    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment = null;
+
+        switch (item.getItemId()){
+            case R.id.ic_home:
+                fragment=new Home();
+                break;
+            case R.id.ic_heart:
+                fragment=new Heart();
+                break;
 
 
+        }
+
+        return loadFragment(fragment);
     }
 }

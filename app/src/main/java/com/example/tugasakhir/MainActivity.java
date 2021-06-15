@@ -19,6 +19,7 @@ import java.util.List;
 //Test
 //Testing, testing 123
 //YABUE
+//Tes Lagi
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
     private BottomNavigationView navbar;
     //Deklarasi Variabel, kayak di C++ gitu

@@ -20,7 +20,7 @@ public interface MainDao {
     void reset(List<MainData> mainData);
 
     @Query("UPDATE datalokal SET komentar = :sText WHERE ID = :sID")
-    void update(int sID, String sText);
+    void update(int sID, String sText, String qText);
 
     @Query("SELECT * FROM datalokal")
     List<MainData> getAll();

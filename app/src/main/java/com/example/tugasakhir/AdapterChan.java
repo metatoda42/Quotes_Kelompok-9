@@ -59,8 +59,9 @@ public class AdapterChan extends RecyclerView.Adapter<AdapterChan.ViewHolder> {
                 MainData d = dataList.get(holder.getAdapterPosition());
 
                 int sID= d.getID();
+                String qText = d.getIdQuote();
 
-                String sText = d.getIdQuote();
+                String sText = d.getKomentar();
 
                 Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.dialog_update);
@@ -86,7 +87,7 @@ public class AdapterChan extends RecyclerView.Adapter<AdapterChan.ViewHolder> {
 
                         String uText = editText.getText().toString().trim();
 
-                        database.mainDao().update(sID,uText);
+                        database.mainDao().update(sID,uText,qText);
 
                         dataList.clear();
                         dataList.addAll(database.mainDao().getAll());

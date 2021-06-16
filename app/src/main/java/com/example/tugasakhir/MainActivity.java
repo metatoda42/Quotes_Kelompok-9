@@ -51,7 +51,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //Dibagian ini, variabel ini dihubungkan dengan komponen yang berada di XML
 
         //Nanti tapi, aku mau ngurus adapter bentar...
-        //--------------------------------------
+        //JIANCUK SUSAH BANGET ANJINGGGGG!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //Nah, kalo ini kodingan yang akan mengurus tampilan
 
         navbar = findViewById(R.id.main_navbar);

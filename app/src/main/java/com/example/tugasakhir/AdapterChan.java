@@ -2,6 +2,7 @@ package com.example.tugasakhir;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,13 +23,13 @@ import java.util.List;
 public class AdapterChan extends RecyclerView.Adapter<AdapterChan.ViewHolder> {
     //Deklarasi class yang akan diurus oleh AdapterChan dan direpresentasikan sebagai variabel
     private List<MainData> dataList;
-    private Activity context;
+    private Context context;
     private DBKomen database;
 
     //Ini semacam perintah buat Adapter chan untuk selalu mengecek ulang dataset apabila terjadi
     //perubahan dalam database DBKomen
 
-    public AdapterChan(Activity context, List<MainData> dataList){
+    public AdapterChan(Context context, List<MainData> dataList){
         this.context = context;
         this.dataList = dataList;
         notifyDataSetChanged();

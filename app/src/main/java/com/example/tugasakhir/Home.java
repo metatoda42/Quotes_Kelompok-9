@@ -40,7 +40,6 @@ public class Home extends Fragment {
     TextView tvQuote, tvAuth;
     Button btSave,btReset;
     RecyclerView recyclerView;
-    LinearLayoutManager linearLayoutManager;
     Context context;
 
     AdapterHome adapter;

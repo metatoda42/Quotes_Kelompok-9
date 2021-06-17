@@ -53,7 +53,7 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.ViewHolder> {
 
         database = DBKomen.getInstance(context);
 
-        holder.et_komQuote.setText(data.getKomentar());
+        holder.tv_randQuote.setText(data.getIdQuote());
         holder.tv_authQuote.setText(data.getIdQuote());
 
 

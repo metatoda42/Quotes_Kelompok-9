@@ -28,16 +28,16 @@ public class Home extends Fragment {
     LinearLayoutManager linearLayoutManager;
     DBKomen database;
 
-    AdapterChan adapter;
+    AdapterHome adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         editText = view.findViewById(R.id.et_komQuote);
+
         btSave = view.findViewById(R.id.btnSave);
         btReset = view.findViewById(R.id.btnReset);
-        recyclerView = view.findViewById(R.id.recyclerviewid);
 
         database = DBKomen.getInstance(this.getContext());
 
@@ -46,19 +46,19 @@ public class Home extends Fragment {
         linearLayoutManager = new LinearLayoutManager(this.getContext());
 
         recyclerView.setLayoutManager((linearLayoutManager));
-        adapter = new AdapterChan(this.getContext(),dataList);
 
+        adapter = new AdapterHome(this.getContext(),dataList);
         recyclerView.setAdapter(adapter);
 
         btSave.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 String sText = editText.getText().toString().trim();
-
-                if(!sText.equals("")){
+                //string qid = api buat ambil quote id
                     MainData data = new MainData();
 
                     data.setKomentar(sText);
+                    //data.setidQuote(qid)
 
                     database.mainDao().insert(data);
 
@@ -67,17 +67,16 @@ public class Home extends Fragment {
                     dataList.clear();
                     dataList.addAll(database.mainDao().getAll());
                     adapter.notifyDataSetChanged();
-                }
+
 
             }
         });
         btReset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                database.mainDao().reset(dataList);
+                adapter = new AdapterHome(view.getContext(),dataList);
+                recyclerView.setAdapter(adapter);
 
-                dataList.clear();
-                dataList.addAll(database.mainDao().getAll());
                 adapter.notifyDataSetChanged();
             }
         });

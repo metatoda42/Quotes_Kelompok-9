@@ -1,6 +1,5 @@
 package com.example.tugasakhir;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -20,8 +19,8 @@ import java.util.List;
 //Ini Adapter Chan, dia adalah perantara 85% kode dalam aplikasi ini.
 // Tolong jangan diganggu.
 
-public class AdapterChan extends RecyclerView.Adapter<AdapterChan.ViewHolder> {
-    //Deklarasi class yang akan diurus oleh AdapterChan dan direpresentasikan sebagai variabel
+public class AdapterHeart extends RecyclerView.Adapter<AdapterHeart.ViewHolder> {
+    //Deklarasi class yang akan diurus oleh AdapterHome dan direpresentasikan sebagai variabel
     private List<MainData> dataList;
     private Context context;
     private DBKomen database;
@@ -29,7 +28,7 @@ public class AdapterChan extends RecyclerView.Adapter<AdapterChan.ViewHolder> {
     //Ini semacam perintah buat Adapter chan untuk selalu mengecek ulang dataset apabila terjadi
     //perubahan dalam database DBKomen
 
-    public AdapterChan(Context context, List<MainData> dataList){
+    public AdapterHeart(Context context, List<MainData> dataList){
         this.context = context;
         this.dataList = dataList;
         notifyDataSetChanged();

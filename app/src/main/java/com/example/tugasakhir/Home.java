@@ -39,8 +39,10 @@ public class Home extends Fragment {
     EditText editText;
     TextView tvQuote, tvAuth;
     Button btSave,btReset;
-    RecyclerView recyclerView;
+    List<MainData> dataList = new ArrayList<>();
+    DBKomen database;
     Context context;
+    AdapterHeart adapter;
     QuoteDataService quoteDataService = new QuoteDataService(context);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,30 +53,59 @@ public class Home extends Fragment {
        btReset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                quoteDataService.getQuoteContent(new QuoteDataService.VolleyResponseListener() {
 
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(context, "FFFFUCK", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onResponse(String konten){
+                        tvQuote.setText(konten);
+                        Toast.makeText(context,konten,Toast.LENGTH_LONG).show();
 
+                    }
+                });
 
+                quoteDataService.getQuoteAuthor(new QuoteDataService.VolleyResponseListener() {
+
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(context, "FFFFUCK", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(String konten){
+                        tvAuth.setText(konten);
+                        Toast.makeText(context,konten,Toast.LENGTH_LONG).show();
+
+                    }
+                });
             }
         });
+
+       btSave.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               String sText = editText.getText().toString().trim();
+
+               if(!sText.equals("")){
+                   MainData data = new MainData();
+
+                   data.setKomentar(sText);
+
+                   database.mainDao().insert(data);
+
+                   editText.setText("");
+
+                   dataList.clear();
+                   dataList.addAll(database.mainDao().getAll());
+                   adapter.notifyDataSetChanged();
+               }
+           }
+       });
         return view;
-    }
-
-    public void ambilQuote(){
-
-        quoteDataService.getQuoteContent(new QuoteDataService.VolleyResponseListener() {
-
-            @Override
-            public void onError(String message) {
-                Toast.makeText(context, "FFFFUCK", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResponse(String konten){
-
-                Toast.makeText(context,konten,Toast.LENGTH_LONG).show();
-            }
-        });
     }
 
 

@@ -51,7 +51,7 @@ public class AdapterHeart extends RecyclerView.Adapter<AdapterHeart.ViewHolder> 
 
         database = DBKomen.getInstance(context);
 
-        holder.textView.setText(data.getIdQuote());
+        holder.textView.setText(data.getKomentar());
 
         holder.btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +59,6 @@ public class AdapterHeart extends RecyclerView.Adapter<AdapterHeart.ViewHolder> 
                 MainData d = dataList.get(holder.getAdapterPosition());
 
                 int sID= d.getID();
-                String qText = d.getIdQuote();
 
                 String sText = d.getKomentar();
 
@@ -87,7 +86,7 @@ public class AdapterHeart extends RecyclerView.Adapter<AdapterHeart.ViewHolder> 
 
                         String uText = editText.getText().toString().trim();
 
-                        database.mainDao().update(sID,uText,qText);
+                        database.mainDao().update(sID,uText);
 
                         dataList.clear();
                         dataList.addAll(database.mainDao().getAll());
@@ -116,9 +115,11 @@ public class AdapterHeart extends RecyclerView.Adapter<AdapterHeart.ViewHolder> 
         });
     }
 
+
+
     @Override
     public int getItemCount() {
-        return 0;
+        return dataList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -129,6 +130,9 @@ public class AdapterHeart extends RecyclerView.Adapter<AdapterHeart.ViewHolder> 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            textView = itemView.findViewById(R.id.text_view);
+            btEdit = itemView.findViewById(R.id.bt_edit);
+            btDelete = itemView.findViewById(R.id.bt_delete);
         }
     }
 }

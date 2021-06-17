@@ -18,7 +18,7 @@ public interface MainDao {
     void delete(MainData mainData);
 
     @Query("UPDATE datalokal SET komentar = :sText WHERE ID = :sID")
-    void update(int sID, String sText, String qText);
+    void update(int sID, String sText);
 
     @Query("SELECT * FROM datalokal")
     List<MainData> getAll();

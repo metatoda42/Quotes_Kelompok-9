@@ -41,8 +41,6 @@ public class Home extends Fragment {
     Button btSave,btReset;
     RecyclerView recyclerView;
     Context context;
-
-    AdapterHome adapter;
     QuoteDataService quoteDataService = new QuoteDataService(context);
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

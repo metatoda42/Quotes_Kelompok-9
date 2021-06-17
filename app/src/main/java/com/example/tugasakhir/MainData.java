@@ -16,7 +16,6 @@ public class MainData {
     //Bikin tabel!
     @PrimaryKey(autoGenerate=true) private int ID;
     @ColumnInfo (name = "komentar") private String komentar;
-    @ColumnInfo(name = "idQuote") private String idQuote; 
 
     //Selanjutnya adalah Getter dan Setter
     //Pada dasarnya, Getter dan Setter adalah fungsi yang akan kita gunakan untuk melakukan
@@ -39,11 +38,4 @@ public class MainData {
         this.komentar = komentar;
     }
 
-    public String getIdQuote() {//sama kayak yang diatas, mager gua...
-        return idQuote;
-    }
-
-    public void setIdQuote(String idQuote) {
-        this.idQuote = idQuote;
-    }
 }

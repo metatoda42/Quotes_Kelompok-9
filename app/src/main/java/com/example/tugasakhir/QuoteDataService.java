@@ -21,17 +21,16 @@ public class QuoteDataService {
     public interface VolleyResponseListener {
         void onError(String message);
 
-        void onResponse(String response1, String response2);
+        void onResponse(String konten);
     }
     //Fungsi untuk mendapatkan isi quote berdasarkan ID
-    public void getQuoteContent(String quoteid, VolleyResponseListener volleyResponseListener){
-        String url ="https://api.quotable.io/quotes/"+quoteid;
+    public void getQuoteContent(final VolleyResponseListener volleyResponseListener){
+        String url ="https://api.quotable.io/quotes/random/";
 
-// Request a string response from the provided URL.
+        // Request a string response from the provided URL.
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     String konten;
-                    String author;
                     @Override
                     public void onResponse(JSONObject response) {
 
@@ -42,7 +41,40 @@ public class QuoteDataService {
                             e.printStackTrace();
                             Toast.makeText(context, (CharSequence) e, Toast.LENGTH_SHORT).show();
                         }
-                        volleyResponseListener.onResponse(konten,author);
+                        volleyResponseListener.onResponse(konten);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
+                volleyResponseListener.onError("FUCK");
+            }
+        });
+
+// Add the request to the RequestQueue.
+        Simpleton.getInstance(context).addToRequestQueue(request);
+    }
+
+
+
+    public void getQuoteAuthor(VolleyResponseListener volleyResponseListener){
+        String url ="https://api.quotable.io/quotes/random/";
+
+        // Request a string response from the provided URL.
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    String author;
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject quoteContent = response.getJSONObject(null);
+                            author = quoteContent.getString("author");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(context, (CharSequence) e, Toast.LENGTH_SHORT).show();
+                        }
+                        volleyResponseListener.onResponse(author);
                     }
                 }, new Response.ErrorListener() {
             @Override

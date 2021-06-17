@@ -53,7 +53,10 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.ViewHolder> {
 
         database = DBKomen.getInstance(context);
 
-        holder.et_komQuote.setText(data.getIdQuote());
+        holder.et_komQuote.setText(data.getKomentar());
+        holder.tv_authQuote.setText(data.getIdQuote());
+
+
 
         holder.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,9 +65,8 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.ViewHolder> {
 
                 int sID= d.getID();
                 String qText = d.getIdQuote();
-                String sText = d.getKomentar();
                 EditText editText = v.findViewById(R.id.et_komQuote);
-                editText.setText(sText);
+
 
                 String uText = editText.getText().toString().trim();
 
@@ -79,6 +81,7 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.ViewHolder> {
         holder.btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+                notifyDataSetChanged();
 
 
 
@@ -94,10 +97,13 @@ public class AdapterHome extends RecyclerView.Adapter<AdapterHome.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageButton btnReset, btnSave;
         EditText et_komQuote;
+        TextView tv_randQuote, tv_authQuote;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             et_komQuote = itemView.findViewById(R.id.et_komQuote);
+            tv_randQuote = itemView.findViewById(R.id.tv_randQuote);
+            tv_authQuote = itemView.findViewById(R.id.tv_authQuote);
             btnReset = itemView.findViewById(R.id.btnReset);
             btnSave = itemView.findViewById(R.id.btnSave);
 

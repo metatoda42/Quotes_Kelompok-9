@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Heart extends Fragment {
     EditText editText;
-    Button btAdd,btReset;
+    Button btAdd;
     RecyclerView recyclerView;
     List<MainData> dataList = new ArrayList<>();
     LinearLayoutManager linearLayoutManager;
@@ -30,17 +30,20 @@ public class Heart extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_list, container, false);
+        editText = view.findViewById(R.id.edit_text);
+        btAdd = view.findViewById(R.id.bt_add);
+    //    btReset = findViewById(R.id.bt_reset);
         recyclerView = view.findViewById(R.id.recyclerviewid);
-        database = DBKomen.getInstance(context);
+        database = DBKomen.getInstance(this.getContext());
 
         dataList = database.mainDao().getAll();
 
         linearLayoutManager = new LinearLayoutManager(context);
 
-        recyclerView.setLayoutManager((linearLayoutManager));
         adapter = new AdapterHeart(getContext(),dataList);
-
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager((linearLayoutManager));
+
 
         btAdd.setOnClickListener(new View.OnClickListener(){
             @Override

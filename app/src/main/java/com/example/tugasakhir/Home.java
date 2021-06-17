@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,7 @@ public class Home extends Fragment {
 
     EditText editText;
     TextView tvQuote, tvAuth;
-    Button btSave,btReset;
+    ImageButton btSave,btReset;
     List<MainData> dataList = new ArrayList<>();
     DBKomen database;
     Context context;
@@ -47,7 +48,10 @@ public class Home extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        tvQuote = view.findViewById(R.id.tv_randQuote);
+        tvAuth = view.findViewById(R.id.tv_authQuote);
+        btSave = view.findViewById(R.id.btnSave);
+        btReset = view.findViewById(R.id.btnReset);
         //=====================================================================
         //TOMBOL RESET DIPENCET, HASILNYA INI
        btReset.setOnClickListener(new View.OnClickListener(){

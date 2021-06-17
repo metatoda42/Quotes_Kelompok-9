@@ -50,7 +50,7 @@ public class Home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         editText = view.findViewById(R.id.et_komQuote);
-
+        quoteid =
         btSave = view.findViewById(R.id.btnSave);
         btReset = view.findViewById(R.id.btnReset);
         tvQuote = view.findViewById(R.id.tv_randQuote);
@@ -73,11 +73,18 @@ public class Home extends Fragment {
             @Override
             public void onClick(View v){
                 String sText = editText.getText().toString().trim();
+                String qText = QuoteDataService.getQuoteContent
                 //string qid = (api buat ambil quote id)
                     MainData data = new MainData();
 
                     data.setKomentar(sText);
-                    //data.setidQuote(qid)
+                    data.setIdQuote(qText);
+
+
+
+
+
+
 
                     database.mainDao().insert(data);
 

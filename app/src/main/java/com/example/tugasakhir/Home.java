@@ -1,32 +1,16 @@
 package com.example.tugasakhir;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,40 +40,13 @@ public class Home extends Fragment {
         database = DBKomen.getInstance(this.getContext());
         adapter = new AdapterHeart(getContext(),dataList);
         quoteDataService = new QuoteDataService(getContext());
+        getQuote();
         //=====================================================================
         //TOMBOL RESET DIPENCET, HASILNYA INI
        btReset.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                quoteDataService.getQuoteContent(new QuoteDataService.VolleyResponseListener() {
-
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String konten){
-                        tvQuote.setText(konten);
-                        Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
-
-                    }
-                });
-
-                quoteDataService.getQuoteAuthor(new QuoteDataService.VolleyResponseListener() {
-
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String konten){
-                        tvAuth.setText(konten);
-                        Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
-
-                    }
-                });
+                getQuote();
             }
         });
 
@@ -114,6 +71,38 @@ public class Home extends Fragment {
            }
        });
         return view;
+    }
+
+    public void getQuote(){
+        quoteDataService.getQuoteContent(new QuoteDataService.VolleyResponseListener() {
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(String konten){
+                tvQuote.setText(konten);
+                Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        quoteDataService.getQuoteAuthor(new QuoteDataService.VolleyResponseListener() {
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(String konten){
+                tvAuth.setText(konten);
+                Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
 

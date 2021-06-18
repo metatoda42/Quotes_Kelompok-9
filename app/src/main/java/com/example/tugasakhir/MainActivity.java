@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navbar = findViewById(R.id.main_navbar);
         navbar.setOnNavigationItemSelectedListener(this);
         loadFragment(new Fragment());
+        loadFragment(new Home());
+
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment fragment = null;
+        Fragment fragment = new Home();
 
         switch (item.getItemId()){
             case R.id.ic_home:

@@ -42,9 +42,9 @@ public class Home extends Fragment {
     ImageButton btSave,btReset;
     List<MainData> dataList = new ArrayList<>();
     DBKomen database;
-    Context context;
     AdapterHeart adapter;
-    QuoteDataService quoteDataService = new QuoteDataService(context);
+    QuoteDataService quoteDataService;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -52,6 +52,10 @@ public class Home extends Fragment {
         tvAuth = view.findViewById(R.id.tv_authQuote);
         btSave = view.findViewById(R.id.btnSave);
         btReset = view.findViewById(R.id.btnReset);
+        editText = view.findViewById(R.id.et_komQuote);
+        database = DBKomen.getInstance(this.getContext());
+        adapter = new AdapterHeart(getContext(),dataList);
+        quoteDataService = new QuoteDataService(getContext());
         //=====================================================================
         //TOMBOL RESET DIPENCET, HASILNYA INI
        btReset.setOnClickListener(new View.OnClickListener(){
@@ -61,13 +65,13 @@ public class Home extends Fragment {
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(context, "FFFFUCK", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onResponse(String konten){
                         tvQuote.setText(konten);
-                        Toast.makeText(context,konten,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -76,13 +80,13 @@ public class Home extends Fragment {
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(context, "FFFFUCK", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onResponse(String konten){
                         tvAuth.setText(konten);
-                        Toast.makeText(context,konten,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -92,7 +96,7 @@ public class Home extends Fragment {
        btSave.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               String sText = editText.getText().toString().trim();
+                String sText = editText.getText().toString().trim();
 
                if(!sText.equals("")){
                    MainData data = new MainData();

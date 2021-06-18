@@ -14,8 +14,8 @@ import org.json.JSONObject;
 public class QuoteDataService {
     Context context;
 
-    public QuoteDataService(Context context) {
-        this.context = context;
+    public QuoteDataService(Context ctx) {
+        this.context = ctx;
     }
 
     public interface VolleyResponseListener {
@@ -23,9 +23,9 @@ public class QuoteDataService {
 
         void onResponse(String konten);
     }
-    //Fungsi untuk mendapatkan isi quote berdasarkan ID
+    //Fungsi untuk mendapatkan random quote
     public void getQuoteContent(final VolleyResponseListener volleyResponseListener){
-        String url ="https://api.quotable.io/quotes/random/";
+        String url ="https://api.quotable.io/random/";
 
         // Request a string response from the provided URL.
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -35,21 +35,18 @@ public class QuoteDataService {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject quoteContent = response.getJSONObject(null);
+                            JSONObject quoteContent = response;
                             konten = quoteContent.getString("content");
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, (CharSequence) e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
                         }
                         volleyResponseListener.onResponse(konten);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
-                volleyResponseListener.onError("FUCK");
-            }
-        });
+                }, error -> {
+                    Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
+                    volleyResponseListener.onError("FUCK");
+                });
 
 // Add the request to the RequestQueue.
         Simpleton.getInstance(context).addToRequestQueue(request);
@@ -58,8 +55,7 @@ public class QuoteDataService {
 
 
     public void getQuoteAuthor(VolleyResponseListener volleyResponseListener){
-        String url ="https://api.quotable.io/quotes/random/";
-
+        String url ="https://api.quotable.io/random/";
         // Request a string response from the provided URL.
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -68,21 +64,18 @@ public class QuoteDataService {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject quoteContent = response.getJSONObject(null);
+                            JSONObject quoteContent = response;
                             author = quoteContent.getString("author");
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(context, (CharSequence) e, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
                         }
                         volleyResponseListener.onResponse(author);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
-                volleyResponseListener.onError("FUCK");
-            }
-        });
+                }, error -> {
+                    Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
+                    volleyResponseListener.onError("FUCK");
+                });
 
 // Add the request to the RequestQueue.
         Simpleton.getInstance(context).addToRequestQueue(request);

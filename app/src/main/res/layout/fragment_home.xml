@@ -7,8 +7,8 @@
     tools:context=".Home">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/foto6"
         android:id="@+id/linearLayout"
+        android:background="@drawable/foto6"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -48,9 +48,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/dancing_script"
-            android:text="Quotes"
-            android:textSize="34sp"
+            android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/guideline_top"
             app:layout_constraintEnd_toStartOf="@+id/guideline_start"
             app:layout_constraintHorizontal_bias="0.063"
@@ -79,10 +77,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/foto7"
+            android:layout_marginBottom="16dp"
             android:text="Loading"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_authQuote"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_mid"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline_top" />
@@ -96,8 +93,6 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="Loading"
-            android:fontFamily="@font/dancing_script"
-            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline_bot"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

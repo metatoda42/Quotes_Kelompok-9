@@ -84,7 +84,6 @@ public class Home extends Fragment {
             @Override
             public void onResponse(String konten){
                 tvQuote.setText(konten);
-                Toast.makeText(getActivity(),konten,Toast.LENGTH_LONG).show();
 
             }
         });

@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
-        android:background="@drawable/foto6"
+        android:background="@drawable/foto8"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -48,7 +48,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:text="TextView"
+            android:textSize="34sp"
+            android:text="Quotes of The Day"
             app:layout_constraintBottom_toTopOf="@+id/guideline_top"
             app:layout_constraintEnd_toStartOf="@+id/guideline_start"
             app:layout_constraintHorizontal_bias="0.063"
@@ -72,6 +73,7 @@
 
         <TextView
             android:id="@+id/tv_randQuote"
+            android:textSize="26sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
@@ -86,6 +88,7 @@
 
         <TextView
             android:id="@+id/tv_authQuote"
+            android:textSize="35sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
@@ -100,6 +103,7 @@
 
         <EditText
             android:id="@+id/et_komQuote"
+            android:textSize="20sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"

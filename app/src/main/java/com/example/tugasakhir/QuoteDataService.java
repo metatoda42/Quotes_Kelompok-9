@@ -44,8 +44,8 @@ public class QuoteDataService {
                         volleyResponseListener.onResponse(konten);
                     }
                 }, error -> {
-                    Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
-                    volleyResponseListener.onError("FUCK");
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                    volleyResponseListener.onError("Error");
                 });
 
 // Add the request to the RequestQueue.
@@ -73,8 +73,8 @@ public class QuoteDataService {
                         volleyResponseListener.onResponse(author);
                     }
                 }, error -> {
-                    Toast.makeText(context, "FUUUUCK", Toast.LENGTH_SHORT).show();
-                    volleyResponseListener.onError("FUCK");
+                    Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show();
+                    volleyResponseListener.onError("Error");
                 });
 
 // Add the request to the RequestQueue.

@@ -78,7 +78,7 @@ public class Home extends Fragment {
 
             @Override
             public void onError(String message) {
-                Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -92,7 +92,7 @@ public class Home extends Fragment {
 
             @Override
             public void onError(String message) {
-                Toast.makeText(getActivity(), "FFFFUCK", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
             }
 
             @Override
